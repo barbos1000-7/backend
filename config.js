@@ -1,5 +1,5 @@
 module.exports = {
-    secret: "SAVELY_SOSET_HUI",
+    secret: "ertwetrwetweterqwrqeQ  W   ",
     SMTP_HOST: 'smtp.yandex.ru',
     SMPT_PORT: '465',
     SMTP_USER: "youngteaschool@yandex.ru",
