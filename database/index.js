@@ -18,6 +18,7 @@ const db = new sqlite3.Database(DBSOURCE, (err) => {
             code integer,
             mail text,
             mailAuth text, 
+            time text,
             CONSTRAINT nickname_unique UNIQUE (nickname)
             )`,
             (err) => {
@@ -66,6 +67,23 @@ const db = new sqlite3.Database(DBSOURCE, (err) => {
                     console.log(err)
                 } else {
                     const insert = 'INSERT or IGNORE INTO answers (content, time, user_id, quest_id) VALUES (?,?,?,?)'
+                }
+            }
+        )
+        db.run(`Create table if not exists likes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+           	users_id INTEGER NOT NULL ,
+           	quests_id INTEGER NOT NULL,
+         FOREIGN KEY (users_id) REFERENCES users(id),
+         FOREIGN KEY (quests_id) REFERENCES quests(id))`
+            ,
+            (err) => {
+                if (err) {
+                    // Table already created
+                    console.log(err)
+                } else {
+                    const insert = 'INSERT or IGNORE INTO likes (users_id, quests_id) VALUES (?,?)'
+                    // db.run(insert, [1, 1])
                 }
             }
         )

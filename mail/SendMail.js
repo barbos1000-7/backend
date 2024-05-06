@@ -1,5 +1,6 @@
-const nodemailer = require('nodemailer')
-const {SMTP_HOST, SMTP_USER, SMTP_PASS} = require("../../config")
+const nodemailer
+    = require('nodemailer')
+const {SMTP_HOST, SMTP_USER, SMTP_PASS} = require("../config")
 
 
 module.exports = async (to, code) => {

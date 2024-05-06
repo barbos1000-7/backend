@@ -22,6 +22,11 @@ const delMailRouter = require('./routes/mail/delMail')
 const uploadAva = require('./routes/auth/uploadAvatar')
 const deletAva = require('./routes/auth/deleteAva')
 const userByIdRouter = require('./routes/userBiId')
+const addLike = require('./routes/addLike')
+const delLike = require('./routes/delLike')
+const personal = require('./routes/personal')
+const deleteQuest = require('./routes/quests/deletQuest')
+const search = require('./routes/quests/search')
 
 
 const app = express();
@@ -58,6 +63,12 @@ app.use(delMailRouter)
 app.use(uploadAva)
 app.use(deletAva)
 app.use(userByIdRouter)
+app.use(addLike)
+app.use(delLike)
+app.use(personal)
+app.use(deleteQuest)
+app.use(search)
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

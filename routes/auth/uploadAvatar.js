@@ -2,14 +2,13 @@ const express = require('express');
 const router = express.Router();
 const Uuid = require('uuid');
 const authMiddle = require('../../middleware/authMiddleware');
-const {staticPath} = require('../../../config')
+const {staticPath} = require('../../config.js')
 
 let db = require('../../database')
 
 router.post("/upload", authMiddle, (req, res) => {
     try {
         const file = req.files.file
-        console.log(file, '2332')
         const avatarName = Uuid.v4() + '.jpg'
         file.mv(staticPath + '\\' + avatarName)
         // const params = []

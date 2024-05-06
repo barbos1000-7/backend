@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken")
-const {secret} = require("../../config")
+const {secret} = require("../config")
 module.exports = (req, res, next) => {
     if (req.method === 'OPTIONS') {
         next()
@@ -9,8 +9,7 @@ module.exports = (req, res, next) => {
             if (!token) {
                 return res.status(403).json({"message": "пользователь не авторизован"})
             }
-            const decodeData = jwt.verify(token, secret)
-            req.user = decodeData
+            req.user = jwt.verify(token, secret)
             next()
         } catch (e) {
             console.log(e)

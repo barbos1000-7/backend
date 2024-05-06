@@ -8,7 +8,7 @@ const AuthMiddlle = require('../middleware/authMiddleware')
 
 router.get('/user', AuthMiddlle, function (req, res, next) {
 
-    const sql = 'select * from users ' +
+    const sql = 'select id, nickname, img, mailAuth, mail from users ' +
         'where users.id = ?'
     const params = [req.user.id]
     // ivanchina.anna07@mail.ru
@@ -20,9 +20,7 @@ router.get('/user', AuthMiddlle, function (req, res, next) {
             res.status(400).json({"message": "Недействительный токен"})
             return
         }
-        setTimeout(() => {
-            res.json({"Message": "suca", user: rows[0]})
-        }, 500)
+        res.json({"Message": "suca", user: rows[0]})
     })
 });
 

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {body} = require("express-validator");
 const jwt = require("jsonwebtoken")
-const {secret} = require("../../../config")
+const {secret} = require("../../config")
 let db = require('../../database')
 const bcrypt = require("bcryptjs");
 
@@ -28,7 +28,7 @@ router.post("/login", body('nickname').notEmpty(), body('password').isLength({mi
             }
             const validPass = bcrypt.compareSync(password, rows[0].password)
             if (!validPass) {
-                res.status(405).json("Введен неправильеый пароль")
+                res.status(405).json({"message": "Введен неправильный пароль"})
                 return
             }
             const token = generateAccessToken(rows[0].id)

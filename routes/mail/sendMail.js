@@ -9,20 +9,20 @@ router.get('/mail/:userMail', AuthMiddlle, function (req, res, next) {
     const sql = 'select mail from users ' +
         'where mail = ?'
     const params = [req.params.userMail.toLowerCase()]
-    setTimeout(() => {
-        db.all(sql, params, (err, rows) => {
-            if (err) {
-                res.json(err.message)
-                return
-            }
-            if (rows[0]) {
-                return res.status(403).json({"message": "Эта почта уже используется"})
-            }
-            res.json({
-                "message": ``,
-            })
-        });
-    }, 700)
+
+    db.all(sql, params, (err, rows) => {
+        if (err) {
+            res.json(err.message)
+            return
+        }
+        if (rows[0]) {
+            return res.status(403).json({"message": "Эта почта уже используется"})
+        }
+        res.json({
+            "message": ``,
+        })
+    });
+
 })
 
 module.exports = router;

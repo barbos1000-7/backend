@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authMiddle = require('../../middleware/authMiddleware');
-const {staticPath} = require('../../../config')
+const {staticPath} = require('../../config.js')
 const fs = require('fs')
 
 
@@ -23,7 +23,7 @@ router.get("/delete", authMiddle, (req, res) => {
                 console.log(e)
             }
             const avatarAdd = 'UPDATE users ' +
-                'SET img = "default.jpg"' +
+                'SET img = "undefined.jpg"' +
                 'where id = ?'
             db.run(avatarAdd, [req.user.id])
             res.json({'message': "Аватарка delete"})

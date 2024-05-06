@@ -12,7 +12,7 @@ router.post("/register", body('nickname').notEmpty(), body('password').isLength(
         if (!er.isEmpty()) {
             return res.status(400).json({message: 'Ршибка при регистрации', er})
         }
-        const {nickname, password} = req.body
+        const {nickname, password, gender} = req.body
         const params = [nickname]
         const sql = 'select nickname, password from users ' +
             'where nickname = ?'
@@ -22,9 +22,10 @@ router.post("/register", body('nickname').notEmpty(), body('password').isLength(
                 return
             }
             if (!rows[0]) {
-                const insert = 'INSERT or IGNORE INTO users (nickname, img, password) VALUES (?,?,?)'
+                let img = Math.floor(Math.random() * 11) + '.jpg';
+                const insert = 'INSERT or IGNORE INTO users (nickname, img, password, time) VALUES (?,?,?,?)'
                 const hash = bcrypt.hashSync(password, 7)
-                db.run(insert, [nickname, "default.jpg", hash])
+                db.run(insert, [nickname, img, hash, Date()])
                 return res.json({"message": "Пользователь зареган"})
             }
             res.status(403).json({
