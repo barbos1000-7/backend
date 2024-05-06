@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": false,
   "scripts": {
-    "start": "node api/index.js"
+    "start": "node api"
   },
   "dependencies": {
     "@vercel/node": "^3.0.28",
