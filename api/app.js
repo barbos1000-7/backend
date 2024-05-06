@@ -1,4 +1,6 @@
 const createError = require('http-errors');
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -29,55 +31,55 @@ const deleteQuest = require('../routes/quests/deletQuest')
 const search = require('../routes/quests/search')
 
 
-const index = express();
+const app = express();
 
 // view engine setup
-index.set('views', path.join(__dirname, 'views'));
-index.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
-index.use(logger('dev'));
-index.use(express.json());
-index.use(express.urlencoded({extended: false}));
-index.use(cookieParser());
-index.use(express.static(path.join(__dirname + '\\' + 'static')));
-
-
-index.use(fileUpload({}))
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname + '\\' + 'static')));
 
 
-index.use(loginRouter)
-index.use(registerRouter)
-index.use('/', indexRouter);
-index.use('/users', usersRouter);
-index.use('/kilbasa', Kolbasaouter)
-index.use('/quests/list', questsListRouter)
-index.use(questsIdRouter)
-index.use(addQuest)
-index.use(usersRouter)
-index.use(UserRouter)
-index.use(answerRouter)
-index.use(mailRouter)
-index.use(codeRouter)
-index.use(acceptRouter)
-index.use(delMailRouter)
-index.use(uploadAva)
-index.use(deletAva)
-index.use(userByIdRouter)
-index.use(addLike)
-index.use(delLike)
-index.use(personal)
-index.use(deleteQuest)
-index.use(search)
+app.use(fileUpload({}))
+
+
+app.use(loginRouter)
+app.use(registerRouter)
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/kilbasa', Kolbasaouter)
+app.use('/quests/list', questsListRouter)
+app.use(questsIdRouter)
+app.use(addQuest)
+app.use(usersRouter)
+app.use(UserRouter)
+app.use(answerRouter)
+app.use(mailRouter)
+app.use(codeRouter)
+app.use(acceptRouter)
+app.use(delMailRouter)
+app.use(uploadAva)
+app.use(deletAva)
+app.use(userByIdRouter)
+app.use(addLike)
+app.use(delLike)
+app.use(personal)
+app.use(deleteQuest)
+app.use(search)
 
 
 // catch 404 and forward to error handler
-index.use(function (req, res, next) {
+app.use(function (req, res, next) {
     next(createError(404));
 });
-// index.use(express.static(__dirname + 'static'))
+// app.use(express.static(__dirname + 'static'))
 
 // error handler
-index.use(function (err, req, res, next) {
+app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -93,6 +95,6 @@ const corsOptions = {
 }
 
 
-index.use(cors(corsOptions)) // Use this after the variable declaration
-index.listen(3000, () => console.log('Server ready on port 3000.'));
-module.exports = index;
+app.use(cors(corsOptions)) // Use this after the variable declaration
+app.listen(3000, () => console.log('Server ready on port 3000.'));
+module.exports = app;
