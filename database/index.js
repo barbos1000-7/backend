@@ -1,11 +1,10 @@
 const sqlite3 = require('sqlite3').verbose()
 const path = require('path');
 
-
-const DBSOURCE = path.join(__dirname, 'db22222.sqlite')
+const DBSOURCE = path.join(__dirname, 'db.sqlite')
 const db = new sqlite3.Database(DBSOURCE, (err) => {
     if (err) {
-        console.log(DBSOURCE)
+        console.log('Coerrrororororororororoororororororororororororororororororororoorororororororororororoororororor.')
         // Cannot open database
         console.error(err.message)
         throw err
@@ -48,8 +47,8 @@ const db = new sqlite3.Database(DBSOURCE, (err) => {
                     console.log(err)
                 } else {
                     const insert = 'INSERT or IGNORE INTO quests (subject, title, time, body, user_id) VALUES (?,?,?,?,?)'
-                    // db.run(insert, [1, 'cосу член', '2023-11-23T13:51:50+07:00', 'ХВАВВВВВВВВВВВВВВВВВВВВВВВ',  1])
-                    // db.run(insert, [1, 'cосу член', '2022-01-26T13:51:50+07:00', 'ХВАВВВВВВВВВВВВВВВВВВВВВВВ', 1])
+                    // db.run(insert, [1, 'cÐ¾ÑÑ ÑÐ»ÐµÐ½', '2023-11-23T13:51:50+07:00', 'Ð¥ÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐ',  1])
+                    // db.run(insert, [1, 'cÐ¾ÑÑ ÑÐ»ÐµÐ½', '2022-01-26T13:51:50+07:00', 'Ð¥ÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐ', 1])
                 }
             }
         )
