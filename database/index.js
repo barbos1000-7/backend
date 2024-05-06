@@ -1,18 +1,11 @@
 const sqlite3 = require('sqlite3').verbose()
 const path = require('path');
-const fs = require('fs');
 
 
 const DBSOURCE = path.join(__dirname, 'db22222.sqlite')
 const db = new sqlite3.Database(DBSOURCE, (err) => {
     if (err) {
         console.log(DBSOURCE)
-        fs.readdir(__dirname, (err, files) => {
-            console.log('123')
-            if (err) throw err;
-            console.log('321')
-            console.log(files);
-        });
         // Cannot open database
         console.error(err.message)
         throw err
