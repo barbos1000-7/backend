@@ -6,6 +6,7 @@
     "start": "node api"
   },
   "dependencies": {
+    "@types/source-map": "^0.5.2",
     "@vercel/node": "^3.0.28",
     "axios": "^1.6.7",
     "bcryptjs": "^2.4.3",
