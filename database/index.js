@@ -8,7 +8,9 @@ const db = new sqlite3.Database(DBSOURCE, (err) => {
     if (err) {
         console.log(DBSOURCE)
         fs.readdir(__dirname, (err, files) => {
+            console.log('123')
             if (err) throw err;
+            console.log('321')
             console.log(files);
         });
         // Cannot open database
